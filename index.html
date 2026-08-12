@@ -149,19 +149,24 @@ document.querySelectorAll('.photo').forEach(p=>p.classList.remove('show'));
 show(0);
 };
 
-let audio=null;
-document.getElementById('playSong').onclick=function(){
-if(!audio)audio=new Audio('shababeek.mp3');
-if(audio.paused){
-audio.play().then(()=>{
-document.querySelector('.song-page').classList.add('playing');
-this.textContent='⏸ إيقاف الأغنية';
-}).catch(()=>alert('تأكد أن audio/shababeek.mp3 مرفوع في GitHub.'));
-}else{audio.pause();this.textContent='▶ تشغيل الأغنية';}
-};
-document.getElementById('musicBtn').onclick=()=>{
-if(!audio)audio=new Audio('shababeek.mp3');
-audio.paused?audio.play():audio.pause();
+let audio = null;
+
+document.getElementById('playSong').onclick = function() {
+    const btn = this; // حفظ مرجع الزرار
+    if (!audio) audio = new Audio('./shababeek.mp3');
+
+    if (audio.paused) {
+        audio.play().then(() => {
+            document.querySelector('.song-page').classList.add('playing');
+            btn.textContent = '⏸️ إيقاف الأغنية';
+        }).catch((err) => {
+            console.log(err);
+            alert('تعذر تشغيل الصوت، تأكد من إعدادات المتصفح أو رفعه على GitHub.');
+        });
+    } else {
+        audio.pause();
+        btn.textContent = '▶️ تشغيل الأغنية';
+    }
 };
 })();
 </script>
