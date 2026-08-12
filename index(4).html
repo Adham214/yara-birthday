@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>عيد ميلاد سعيد يا يارا ❤️</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(135deg,#ffd6e7,#fff0f6,#d9f3ff);color:#5b2340;overflow:hidden}
+main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:min(720px,100%);padding:42px 24px;text-align:center;border-radius:30px;background:#ffffffd9;box-shadow:0 20px 60px #6428462e}
+.cake{font-size:70px;animation:b 2s ease-in-out infinite}@keyframes b{50%{transform:translateY(-10px)}}
+h1{margin:10px 0;color:#d63384;font-size:clamp(36px,8vw,64px)}h2{margin:0 0 18px;font-size:clamp(22px,5vw,36px)}
+p{font-size:19px;line-height:1.9}.message{margin:24px auto;padding:20px;border-radius:20px;background:#fff5fa;font-size:20px;line-height:2}
+button{border:0;border-radius:999px;padding:15px 30px;font-size:18px;font-weight:bold;cursor:pointer;background:#d63384;color:white}
+#surprise{display:none;margin-top:20px;font-size:21px;color:#b42364;font-weight:bold}.footer{margin-top:26px;font-size:14px;opacity:.6}
+.heart{position:fixed;bottom:-40px;font-size:25px;animation:f 8s linear infinite;opacity:.7}.h1{left:10%}.h2{left:30%;animation-delay:2s}.h3{left:55%;animation-delay:4s}.h4{left:80%;animation-delay:1s}
+@keyframes f{to{transform:translateY(-115vh) rotate(30deg)}}
+</style>
+</head>
+<body>
+<div class="heart h1">❤️</div><div class="heart h2">💗</div><div class="heart h3">💖</div><div class="heart h4">💕</div>
+<main><section class="card">
+<div class="cake">🎂</div>
+<h1>كل سنة وانتي طيبة يا يارا ❤️</h1>
+<h2>Happy Birthday, Yara 🎉</h2>
+<p>النهارده مش يوم عادي… النهارده يوم مميز جدًا لأنه يوم ميلاد شخص مميز جدًا.</p>
+<div class="message">أتمنى السنة الجديدة من عمرك تكون مليانة فرحة ونجاح وراحة بال،<br>وتحققي فيها كل حاجة نفسك فيها،<br>وتفضلي دايمًا مبتسمة ومبسوطة ❤️</div>
+<button onclick="surprise()">🎁 اضغطي هنا للمفاجأة</button>
+<div id="surprise">✨ أجمل أمنية ليكي: سنة حلوة شبه قلبك يا يارا ❤️✨</div>
+<div class="footer">Made with ❤️ specially for Yara</div>
+</section></main>
+<script>
+function surprise(){
+document.getElementById('surprise').style.display='block';
+for(let i=0;i<18;i++){let e=document.createElement('div');e.textContent=['❤️','💖','✨','🎉','💕'][Math.floor(Math.random()*5)];e.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:-30px;font-size:${18+Math.random()*25}px;z-index:10;transition:transform 3s linear,opacity 3s`;document.body.appendChild(e);requestAnimationFrame(()=>{e.style.transform=`translateY(${innerHeight+80}px) rotate(${Math.random()*360}deg)`;e.style.opacity=0});setTimeout(()=>e.remove(),3200)}
+}
+</script>
+</body>
+</html>
