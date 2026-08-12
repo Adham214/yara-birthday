@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Happy Birthday Yara ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#100711;color:#fff;font-family:Georgia,serif}
+body{min-height:100vh;overflow-x:hidden;background:radial-gradient(circle at 50% 20%,#5a1d3c,#170713 68%,#080408)}
+.page{display:none;min-height:100svh;width:100%;padding:35px 16px 80px;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:relative}
+.page.active{display:flex;animation:fade .7s ease}
+.kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#efb7cb}
+h1{font-size:clamp(46px,13vw,82px);font-style:italic;font-weight:400;line-height:.9;margin:15px 0}
+h2{font-size:clamp(30px,9vw,55px);font-weight:400;color:#ffd5e4;margin:8px 0 20px}
+button{font:inherit;color:#fff;cursor:pointer}
+.next{margin-top:24px;padding:13px 23px;border-radius:30px;border:1px solid #ffd5e455;background:#ffffff12}
+@keyframes fade{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+
+.gift{position:relative;width:250px;height:240px;margin:18px 0;border:0;background:transparent;animation:float 2s ease-in-out infinite;filter:drop-shadow(0 20px 25px #0009)}
+@keyframes float{50%{transform:translateY(-9px)}}
+.box{position:absolute;left:34px;bottom:18px;width:182px;height:125px;border-radius:8px;background:linear-gradient(135deg,#ff4c91,#a30e4c)}
+.lid{position:absolute;left:25px;top:62px;width:200px;height:40px;border-radius:8px;background:linear-gradient(135deg,#ff73a8,#b8175a);z-index:5;transition:1s}
+.ribbonV{position:absolute;left:109px;bottom:18px;width:31px;height:125px;background:#ffe9a0;z-index:6}
+.ribbonH{position:absolute;left:34px;top:86px;width:182px;height:24px;background:#ffe9a0;z-index:6}
+.bow{position:absolute;top:27px;width:66px;height:44px;border:11px solid #ffe39b;border-radius:50%;z-index:8;transition:1s}
+.bow.l{left:62px;transform:rotate(25deg)}.bow.r{right:62px;transform:rotate(-25deg)}
+.gift.open .lid{transform:translateY(-105px) rotate(-7deg)}
+.gift.open .bow{transform:translateY(-110px);opacity:0}
+
+.confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.piece{position:absolute;top:-20px;width:7px;height:14px;animation:fall 3s linear forwards}
+@keyframes fall{to{transform:translateY(120svh) rotate(720deg);opacity:0}}
+
+.memories{width:min(850px,100%);display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.photo{margin:0;background:#f7eee3;padding:6px 6px 20px;color:#39202d;box-shadow:0 12px 30px #0008;opacity:0}
+.photo.show{animation:photo .7s forwards}
+.photo img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}
+.caption{font-size:10px;padding-top:6px}
+@keyframes photo{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:rotate(var(--r))}}
+
+.record{width:155px;height:155px;border-radius:50%;background:radial-gradient(circle,#ffd6e5 0 5%,#551932 6% 12%,#100711 13% 23%,#8d2b50 24% 25%,#100711 26%);box-shadow:0 0 55px #ff5a9844;animation:spin 5s linear infinite;animation-play-state:paused}
+.song-page.playing .record{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.letter{width:min(650px,100%);padding:26px 20px;border:1px solid #ffd5e433;border-radius:22px;background:#ffffff09}
+.letter p{font-size:15px;line-height:1.85;color:#f8dfe8;margin:0 0 14px}
+.signature{font-style:italic;color:#ffb7d0!important;font-size:20px!important}
+
+.music{position:fixed;right:12px;bottom:12px;z-index:50;border:1px solid #ffffff22;background:#150913ee;border-radius:30px;padding:6px 10px}
+.music button{width:36px;height:36px;border:0;border-radius:50%;background:#ff6797}
+
+@media(max-width:500px){
+ .page{padding:28px 12px 90px}
+ .memories{gap:8px}
+ .photo{padding:5px 5px 18px}
+ .caption{font-size:9px}
+ .letter{padding:22px 16px}
+ .letter p{font-size:14px;line-height:1.8}
+}
+</style>
+</head>
+<body>
+
+<section id="p0" class="page active">
+<div class="kicker">A little surprise for you...</div>
+<button id="gift" class="gift" aria-label="Open the gift">
+<span class="lid"></span><span class="box"></span><span class="ribbonV"></span><span class="ribbonH"></span>
+<span class="bow l"></span><span class="bow r"></span>
+</button>
+<div class="kicker" style="letter-spacing:1px">Tap the gift 🎁</div>
+</section>
+
+<section id="p1" class="page">
+<div id="confetti" class="confetti"></div>
+<div class="kicker">For the girl whose eyes look like stars</div>
+<h1>Happy Birthday</h1><h2>Yara ❤️</h2>
+<div style="font-size:32px">🌹 ✨ 🌹</div>
+<div class="kicker" style="letter-spacing:1px;margin-top:10px">Today is all about you.</div>
+<button class="next" id="memoriesBtn">Our memories 📸</button>
+</section>
+
+<section id="p2" class="page">
+<div class="kicker">Four little pieces of us</div><h2>Our Memories</h2>
+<div class="memories">
+<figure class="photo" style="--r:-3deg"><img src="images/memory1.jpg" alt="Memory 1"><div class="caption">One of my favorite days ❤️</div></figure>
+<figure class="photo" style="--r:4deg"><img src="images/memory2.jpg" alt="Memory 2"><div class="caption">Your smile makes everything better.</div></figure>
+<figure class="photo" style="--r:2deg"><img src="images/memory3.jpg" alt="Memory 3"><div class="caption">Every moment with you matters.</div></figure>
+<figure class="photo" style="--r:-4deg"><img src="images/memory4.jpg" alt="Memory 4"><div class="caption">Many more memories to come...</div></figure>
+</div>
+<button class="next" id="songBtn">Our song 🎵</button>
+</section>
+
+<section id="p3" class="page song-page">
+<div class="kicker">The song that reminds me of us</div>
+<div class="record"></div>
+<h2 style="margin-bottom:5px">شبابيك</h2>
+<div class="kicker" style="letter-spacing:1px">محمد منير</div>
+<button class="next" id="playSong">▶ تشغيل الأغنية</button>
+<button class="next" id="messageBtn">One last thing... 💌</button>
+</section>
+
+<section id="p4" class="page">
+<div class="letter">
+<div style="font-size:35px">💌</div>
+<div class="kicker">For Yara</div>
+<h2>My beautiful Yara</h2>
+<p>To my beautiful Yara, whose eyes are like the stars...</p>
+<p>I learned what love truly means when I met you. I never really believed in all those romantic love stories, until my heart fell in love with you and I felt this feeling for the very first time in my life.</p>
+<p>You have always been by my side through every moment. You have been my love, my companion, and the person I can always count on.</p>
+<p>I love you, and I hope I can always make you happy, because you deserve every bit of that feeling and so much more.</p>
+<p class="signature">Your Adham ❤️</p>
+</div>
+<button class="next" id="replayBtn">Replay the surprise ↻</button>
+</section>
+
+<div class="music"><button id="musicBtn">♫</button></div>
+
+<script>
+(function(){
+const pages=[0,1,2,3,4].map(i=>document.getElementById('p'+i));
+function show(n){
+pages.forEach((p,i)=>p.classList.toggle('active',i===n));
+window.scrollTo({top:0,behavior:'smooth'});
+if(n===2){
+document.querySelectorAll('.photo').forEach(p=>p.classList.remove('show'));
+document.querySelectorAll('.photo').forEach((p,i)=>setTimeout(()=>p.classList.add('show'),i*180));
+}
+}
+function confetti(){
+const box=document.getElementById('confetti');box.innerHTML='';
+for(let i=0;i<75;i++){
+const e=document.createElement('span');e.className='piece';
+e.style.left=Math.random()*100+'%';
+e.style.animationDelay=Math.random()*.8+'s';
+e.style.background=['#ff6b9b','#ffd77a','#fff','#c99cff'][i%4];
+box.appendChild(e);
+}}
+document.getElementById('gift').onclick=function(){
+if(this.classList.contains('open'))return;
+this.classList.add('open');confetti();setTimeout(()=>show(1),900);
+};
+document.getElementById('memoriesBtn').onclick=()=>show(2);
+document.getElementById('songBtn').onclick=()=>show(3);
+document.getElementById('messageBtn').onclick=()=>show(4);
+document.getElementById('replayBtn').onclick=()=>{
+document.getElementById('gift').classList.remove('open');
+document.querySelectorAll('.photo').forEach(p=>p.classList.remove('show'));
+show(0);
+};
+
+let audio=null;
+document.getElementById('playSong').onclick=function(){
+if(!audio)audio=new Audio('audio/shababeek.mp3');
+if(audio.paused){
+audio.play().then(()=>{
+document.querySelector('.song-page').classList.add('playing');
+this.textContent='⏸ إيقاف الأغنية';
+}).catch(()=>alert('تأكد أن audio/shababeek.mp3 مرفوع في GitHub.'));
+}else{audio.pause();this.textContent='▶ تشغيل الأغنية';}
+};
+document.getElementById('musicBtn').onclick=()=>{
+if(!audio)audio=new Audio('audio/shababeek.mp3');
+audio.paused?audio.play():audio.pause();
+};
+})();
+</script>
+</body>
+</html>
