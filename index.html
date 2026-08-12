@@ -151,7 +151,7 @@ show(0);
 
 let audio=null;
 document.getElementById('playSong').onclick=function(){
-if(!audio)audio=new Audio('audio/shababeek.mp3');
+if(!audio)audio=new Audio('shababeek.mp3');
 if(audio.paused){
 audio.play().then(()=>{
 document.querySelector('.song-page').classList.add('playing');
