@@ -96,7 +96,7 @@ button{font:inherit;color:#fff;cursor:pointer}
 <div class="record"></div>
 <h2 style="margin-bottom:5px">شبابيك</h2>
 <div class="kicker" style="letter-spacing:1px">محمد منير</div>
-<button class="next" id="playSong">▶ تشغيل الأغنية</button>
+<button class="next" id="playSong">⏸️ إيقاف الأغنية</button>
 <button class="next" id="messageBtn">One last thing... 💌</button>
 </section>
 
@@ -118,6 +118,20 @@ button{font:inherit;color:#fff;cursor:pointer}
 
 <script>
 (function(){
+let audio = null;
+
+// دالة مساعدة لتشغيل الصوت بشكل مضمون
+function startAudio() {
+    if (!audio) audio = new Audio('./shababeek.mp3');
+    if (audio.paused) {
+        audio.play().then(() => {
+            document.querySelector('.song-page').classList.add('playing');
+            const playBtn = document.getElementById('playSong');
+            if (playBtn) playBtn.textContent = '⏸️ إيقاف الأغنية';
+        }).catch(err => console.log('Audio error:', err));
+    }
+}
+
 const pages=[0,1,2,3,4].map(i=>document.getElementById('p'+i));
 function show(n){
 pages.forEach((p,i)=>p.classList.toggle('active',i===n));
@@ -127,6 +141,7 @@ document.querySelectorAll('.photo').forEach(p=>p.classList.remove('show'));
 document.querySelectorAll('.photo').forEach((p,i)=>setTimeout(()=>p.classList.add('show'),i*180));
 }
 }
+
 function confetti(){
 const box=document.getElementById('confetti');box.innerHTML='';
 for(let i=0;i<75;i++){
@@ -136,38 +151,60 @@ e.style.animationDelay=Math.random()*.8+'s';
 e.style.background=['#ff6b9b','#ffd77a','#fff','#c99cff'][i%4];
 box.appendChild(e);
 }}
+
+// عند الضغط على الهدية: تفتح وتشتغل الأغنية فوراً
 document.getElementById('gift').onclick=function(){
 if(this.classList.contains('open'))return;
-this.classList.add('open');confetti();setTimeout(()=>show(1),900);
+this.classList.add('open');
+confetti();
+startAudio(); // تشغيل الصوت
+setTimeout(()=>show(1),900);
 };
+
 document.getElementById('memoriesBtn').onclick=()=>show(2);
 document.getElementById('songBtn').onclick=()=>show(3);
 document.getElementById('messageBtn').onclick=()=>show(4);
 document.getElementById('replayBtn').onclick=()=>{
 document.getElementById('gift').classList.remove('open');
 document.querySelectorAll('.photo').forEach(p=>p.classList.remove('show'));
+if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+}
 show(0);
 };
 
-let audio = null;
-
+// التحكم بالأغنية من صفحة الأغنية نفسها
 document.getElementById('playSong').onclick = function() {
-    const btn = this; // حفظ مرجع الزرار
     if (!audio) audio = new Audio('./shababeek.mp3');
 
     if (audio.paused) {
         audio.play().then(() => {
             document.querySelector('.song-page').classList.add('playing');
-            btn.textContent = '⏸️ إيقاف الأغنية';
+            this.textContent = '⏸️ إيقاف الأغنية';
         }).catch((err) => {
             console.log(err);
-            alert('تعذر تشغيل الصوت، تأكد من إعدادات المتصفح أو رفعه على GitHub.');
         });
     } else {
         audio.pause();
-        btn.textContent = '▶️ تشغيل الأغنية';
+        document.querySelector('.song-page').classList.remove('playing');
+        this.textContent = '▶️ تشغيل الأغنية';
     }
 };
+
+// زرار الموسيقى السريع بالأسفل
+document.getElementById('musicBtn').onclick = function() {
+    if (!audio) audio = new Audio('./shababeek.mp3');
+    if (audio.paused) {
+        startAudio();
+    } else {
+        audio.pause();
+        document.querySelector('.song-page').classList.remove('playing');
+        const playBtn = document.getElementById('playSong');
+        if (playBtn) playBtn.textContent = '▶️ تشغيل الأغنية';
+    }
+};
+
 })();
 </script>
 </body>
