@@ -83,10 +83,10 @@ button{font:inherit;color:#fff;cursor:pointer}
 <section id="p2" class="page">
 <div class="kicker">Four little pieces of us</div><h2>Our Memories</h2>
 <div class="memories">
-<figure class="photo" style="--r:-3deg"><img src="images/memory1.jpg" alt="Memory 1"><div class="caption">One of my favorite days ❤️</div></figure>
-<figure class="photo" style="--r:4deg"><img src="images/memory2.jpg" alt="Memory 2"><div class="caption">Your smile makes everything better.</div></figure>
-<figure class="photo" style="--r:2deg"><img src="images/memory3.jpg" alt="Memory 3"><div class="caption">Every moment with you matters.</div></figure>
-<figure class="photo" style="--r:-4deg"><img src="images/memory4.jpg" alt="Memory 4"><div class="caption">Many more memories to come...</div></figure>
+<figure class="photo" style="--r:-3deg"><img src="memory1.jpg" alt="Memory 1"><div class="caption">One of my favorite days ❤️</div></figure>
+<figure class="photo" style="--r:4deg"><img src="memory2.jpg" alt="Memory 2"><div class="caption">Your smile makes everything better.</div></figure>
+<figure class="photo" style="--r:2deg"><img src="memory3.jpg" alt="Memory 3"><div class="caption">Every moment with you matters.</div></figure>
+<figure class="photo" style="--r:-4deg"><img src="memory4.jpg" alt="Memory 4"><div class="caption">Many more memories to come...</div></figure>
 </div>
 <button class="next" id="songBtn">Our song 🎵</button>
 </section>
@@ -160,7 +160,7 @@ this.textContent='⏸ إيقاف الأغنية';
 }else{audio.pause();this.textContent='▶ تشغيل الأغنية';}
 };
 document.getElementById('musicBtn').onclick=()=>{
-if(!audio)audio=new Audio('audio/shababeek.mp3');
+if(!audio)audio=new Audio('shababeek.mp3');
 audio.paused?audio.play():audio.pause();
 };
 })();
